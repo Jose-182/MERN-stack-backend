@@ -10,7 +10,7 @@ router.route("/")
     .post(createUser)
 
 
-router.route("/:id?/:name?")
+router.route("/:id?/:name?/:pass?")
     .delete(deleteUser)
     .put(updateUser)
     .get(getUser)
