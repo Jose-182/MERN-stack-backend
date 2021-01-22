@@ -61,12 +61,18 @@ usersCtr.getUser= async (req,res)=>
         })
     }
     else{
-        await userModel.find({userName:req.params.name},(err,user)=>{
-            if(err){
-                return res.json({message:"error"})
-            }
+        const verified = bcrypt.compareSync(req.params.pass, user[0].password);
+            
+        if(err){
+            return res.json({message:"error"})
+        }
+        if(verified){
             return res.json(user);
-        })
+        }
+        else{
+            return res.json({message:"incorrect password"});
+            
+        }
     }
 };
 
