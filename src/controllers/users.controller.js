@@ -15,7 +15,8 @@ usersCtr.createUser= async (req,res)=>
     const{userName}=req.body;
 
     const user=new userModel({
-        userName
+        userName,
+        password
     })
 
     await user.save({w:1},(err,user)=>{
