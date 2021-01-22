@@ -67,7 +67,7 @@ usersCtr.getUser= async (req,res)=>
             if(err){
                 return res.json({message:"error"})
             }
-            if(verified){
+            else if(verified){
                 return res.json(user);
             }
             else{
