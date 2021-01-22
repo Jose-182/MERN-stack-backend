@@ -12,7 +12,7 @@ usersCtr.getUsers= async (req,res)=>
 };
 usersCtr.createUser= async (req,res)=>
 {
-    const{userName}=req.body;
+    const{userName,password}=req.body;
 
     const user=new userModel({
         userName,
