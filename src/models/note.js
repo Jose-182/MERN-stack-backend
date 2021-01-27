@@ -6,8 +6,9 @@ const noteSchema=new Schema({
         type:String,
         required:true
     },
-    author: String,
+    id_user: String,
     color:String,
+    colorLetter:String,
     date:{
         type:Date,
         default:Date.now()

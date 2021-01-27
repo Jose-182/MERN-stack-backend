@@ -2,7 +2,9 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const app=express();
 const cors=require('cors');
-
+const helmet=require('helmet');
+//serguridad
+app.use(helmet());
 //settings
 app.set('port',process.env.PORT||4000)
 app.set('api',"/api")

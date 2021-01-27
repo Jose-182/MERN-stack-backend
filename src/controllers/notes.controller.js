@@ -10,13 +10,14 @@ notesCtr.getNotes= async (req,res)=>
 };
 notesCtr.createNote= async (req,res)=>
 {
-    const {title,description,date,author,color}=req.body;
+    const {title,description,date,id_user,color,colorLetter}=req.body;
     const note=new noteModel({
         title:title,
         description:description,
         date:date,
-        author:author,
-        color:color
+        id_user:id_user,
+        color:color,
+        colorLetter:colorLetter
     })
     
     await note.save();
@@ -57,7 +58,7 @@ notesCtr.getNote= async (req,res)=>
         })
     }
     else{
-        await noteModel.find({author:req.params.author},(err,note)=>{
+        await noteModel.find({id_user:req.params.author},(err,note)=>{
             if(err){
                return res.json({message:"error"})
             }
