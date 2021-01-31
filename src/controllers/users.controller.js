@@ -4,11 +4,15 @@ const bcrypt = require('bcryptjs');
 const user = require('../models/user');
 usersCtr.getUsers= async (req,res)=>
 {
+    const userNames=[];
     await userModel.find((err,users)=>{
         if(err){
             return res.json({message:"error"})
         }
-        return res.json(users);
+        users.forEach(e=>{
+            userNames.push(e.userName);
+        })
+        return res.json(userNames);
     })
 };
 usersCtr.createUser= async (req,res)=>
@@ -28,28 +32,6 @@ usersCtr.createUser= async (req,res)=>
         return res.json(user);
     })
     
-    
-}
-usersCtr.authUser=async(req,res)=>{
-    const {userName,password}=req.body;
-
-    await user.findOne({userName:userName},(err,user)=>{
-        
-        if(!user){
-            return res.json({message:"Username not exist"});
-        }
-        else{
-            const auth=bcrypt.compareSync(password,user.password);
-            if(auth){
-                return res.json({_id:user._id,userName:user.userName});
-            }
-            else{
-                return res.json({message:'Incorret password'});
-            }
-        }
-
-    })
-
     
 }
 usersCtr.deleteUser= async (req,res)=>
