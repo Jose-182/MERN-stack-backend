@@ -15,6 +15,6 @@ app.use(bodyParser.json());
 //routes
 app.use(app.get('api')+"/notes",require('./routes/notes'));
 app.use(app.get('api')+"/users",require('./routes/users'));
-
+app.use(app.get('api')+"/users/auth",require('./routes/auth'));
 
 module.exports=app
