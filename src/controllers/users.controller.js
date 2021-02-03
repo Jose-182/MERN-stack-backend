@@ -1,7 +1,7 @@
 const  usersCtr={};
 const userModel=require('../models/user')
 const bcrypt = require('bcryptjs');
-const user = require('../models/user');
+
 usersCtr.getUsers= async (req,res)=>
 {
     const userNames=[];
@@ -22,7 +22,8 @@ usersCtr.createUser= async (req,res)=>
     const hashedPassword=bcrypt.hashSync(password,10);
     const user=new userModel({
         userName,
-        password:hashedPassword
+        password:hashedPassword,
+        imgProfile:''
     })
 
     await user.save({w:1},(err,user)=>{
