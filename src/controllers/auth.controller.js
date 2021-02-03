@@ -13,7 +13,7 @@ authCtr.authUser=async(req,res)=>{
         else{
             const auth=bcrypt.compareSync(password,user.password);
             if(auth){
-                return res.json({_id:user._id,userName:user.userName});
+                return res.json({_id:user._id,userName:user.userName,imgProfile:user.imgProfile});
             }
             else{
                 return res.json({message:'Incorret password'});
